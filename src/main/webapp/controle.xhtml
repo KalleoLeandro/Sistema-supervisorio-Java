@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="corpo">
+		<title>Sistema - Supervisório</title>
+				
+		
+		
+		<p:outputLabel value="Lâmpada 1 - #{aberturaBacking.lampada1}" id="l1" style="color: #{aberturaBacking.cor1};"/>
+		
+		<p:poll interval="1" update="l1" />
+		
+		<p:separator/>
+		
+		<p:outputLabel value="Lâmpada 2 - #{aberturaBacking.lampada2}" id="l2" style="color: #{aberturaBacking.cor2};"/>
+		<p:poll interval="1" update="l2" />
+		
+		<p:separator />
+		
+		<p:outputLabel value="Lâmpada 3 - #{aberturaBacking.lampada3}" id="l3" style="color: #{aberturaBacking.cor3};"/>
+		<p:poll interval="1" update="l3" />
+		
+		<p:separator />	
+		
+		<p:outputLabel value="Lâmpada 4 - #{aberturaBacking.lampada4}" id="l4" style="color: #{aberturaBacking.cor4};"/>
+		<p:poll interval="1" update="l4" />
+		
+		<p:separator />	
+		
+		<p:outputLabel rendered="#{aberturaBacking.alerta}" id="ok" style="font-size: 50px; color: #FF0000; margin-top: 50px;">Existem lâmpadas com mal funcionamento! Favor verificar!</p:outputLabel>
+		<p:poll interval="1" update="ok" />		
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,27 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+	
+		<h:form>
+					
+			<p:panelMenu id="painel">
+			
+				<p:submenu label="INICIO">
+					<p:menuitem value="Início" url="index.xhtml"/>
+					
+				</p:submenu>
+			
+				<p:submenu label="DASHBOARD">
+					<p:menuitem value="Visualizar Estado do Sistema" url="controle.xhtml"/>					
+				</p:submenu>
+				
+				<p:submenu label="RELATÓRIOS">					
+					<p:menuitem value="Relatório Anual" url="anual-resume.xhtml"/>				
+				</p:submenu>			
+				
+			</p:panelMenu>	
+		</h:form>
+
+</ui:composition>

@@ -1,0 +1,106 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="corpo">
+		<title>Resumo Financeiro</title>	
+		<h:form>		
+			<p:growl id="growl" showDetail="true" life="4000" />
+
+			<p:tabView>				
+				<p:tab id="resumo" title="Resumo Financeiro Anual">
+				<h:panelGrid columns="5">
+							<p:outputLabel value="Ano:" size="10"/>
+							<p:inputText id="inputNum" value="#{resumeBacking.ano}" mask="####" maxlength="4"/>
+							<p:outputLabel value="Preço Kw/h:" size="10"/>
+							<p:inputText id="inputNum2" value="#{resumeBacking.preco}" mask="####" />
+							 <p:commandButton id="btn-pesquisar" value="Pesquisar" 
+							action="#{resumeBacking.anoPesquisar}" update="@form" style="width:200px"/>
+				</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:chart type="pie" model="#{resumeBacking.pieModel}" rendered="#{resumeBacking.render}" style="width:400px;height:300px" />					
+						
+						<h:panelGrid columns="1">
+
+							<p:dataTable id="tabelaAnual"
+								value="#{resumeBacking.lista}" var="mes"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+															  {PreviousPageLink} {PageLinks}
+															  {NextPageLink} {LastPageLink}
+															  {Exporters}"
+								paginator="true" rows="12" lazy="true"
+								emptyMessage="Nenhum registro encontrado!">
+
+								<f:facet name="{Exporters}">
+
+									<div style="float: right; padding-top: 5px;">
+
+										<h:commandLink id="excel">
+											<p:graphicImage name="/demo/images/excel.png" />
+											<p:dataExporter type="xls" target="tabelaAnual"
+												fileName="listaAnual" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="/demo/images/xlsx.png" width="24" />
+											<p:dataExporter type="xlsxstream" target="tabelaAnual"
+												fileName="listaAnual" />
+										</h:commandLink>
+
+										<h:commandLink id="pdf">
+											<p:graphicImage name="/demo/images/pdf.png" />
+											<p:dataExporter type="pdf" target="tabelaAnual"
+												fileName="listaclientes" />
+										</h:commandLink>
+
+										<h:commandLink id="csv">
+											<p:graphicImage name="/demo/images/csv.png" />
+											<p:dataExporter type="csv" target="tabelaAnual"
+												fileName="listaAnual" />
+										</h:commandLink>
+
+										<h:commandLink id="xml">
+											<p:graphicImage name="/demo/images/xml.png" />
+											<p:dataExporter type="xml" target="tabelaAnual"
+												fileName="listaAnual" />
+										</h:commandLink>
+									</div>
+
+								</f:facet>
+								
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Mês" />
+									</f:facet>
+									<h:outputText value="#{mes.data}" />
+								</p:column>
+								
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Consumo(Kw/h)" />
+									</f:facet>
+									<h:outputText value="#{mes.valor}" />
+								</p:column>
+								
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Custo" />
+									</f:facet>
+									<h:outputText value="R$#{mes.custo}" />
+								</p:column>				
+
+							</p:dataTable>
+						</h:panelGrid>									
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+			
+		
+			<br />		
+		</h:form>
+	
+	</ui:define>
+
+</ui:composition>
