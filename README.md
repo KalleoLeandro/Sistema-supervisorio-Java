@@ -18,6 +18,12 @@ Usando como base o IDE Eclipse, clicar em Import -> Exist Maven Projects
 
 Clicar em cima do projeto e escolher as opções Maven -> Update Project para puxar as bibliotecas de dependêcias
 
+##Importação Banco de dados
+
+Em MySQL, criar uma database de nome mydb(não é obrigatório, mas caso queira um nome diferente, deverá ser modificado no arquivo hibernate do projeto o nome de sua respectiva database).
+
+Utilizar os comandos de geração contidos neste projeto na pasta database para gerar as tabelas (usar um programa gerencial para importação, tal como o HeidiSQL, pode otimizar o processo).
+
 ##IMPORTANTE!!!
 
 Existe um pequeno problema neste projeto(aberto a soluções), onde ao sair do sistema e fechar o projeto, a Thread em questão não reabre. Com isso o sistema ao ser fechado só funciona novamente ao resetar o arduino e
